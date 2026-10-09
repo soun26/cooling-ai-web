@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f9f6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cooling AI">
+  <meta name="description" content="Cooling AI — prediction and assistant from your master computer.">
+  <title>Kênh làm mát tiến hóa dạng sinh học · AI</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="app.css">
+  <script src="chat-stream.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="garage.js" defer></script>
+  <script src="result-interaction.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Đến nội dung</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Cooling AI"><span class="brand-mark" aria-hidden="true">∿</span><span>COOLING <b>AI</b></span></a>
+      <div class="top-actions"><a class="mode-switch" href="/" title="Chọn chế độ">User mode</a>
+        <span class="connection" id="connection" role="status"><span class="dot" aria-hidden="true"></span><span id="connection-text">Đang kết nối</span></span>
+        <button class="language" id="language" type="button" aria-label="Switch language to English">EN</button>
+      </div>
+    </header>
+    <div id="network-banner" class="notice" hidden role="status"></div>
+    <div id="update-banner" class="notice update" hidden><span data-i18n="newVersion">Có bản cập nhật.</span><button id="update-now" type="button" data-i18n="update">Cập nhật</button></div>
+    <aside class="rail">
+      <p class="eyebrow">// USER EDITION</p>
+      <nav class="navigation" aria-label="Main" id="navigation">
+        <button type="button" class="nav-button selected" data-page="predict" aria-current="page"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 18L10 6l4 8 3-5 3 9M4 21h16"/></svg><span data-i18n="predict">Dự đoán</span></button>
+        <button type="button" class="nav-button" data-page="results"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 3v18h17M8 16v-5m5 5V6m5 10v-7"/></svg><span data-i18n="results">Kết quả</span></button>
+        <button type="button" class="nav-button" data-page="assistant"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4V4M8 9h1m6 0h1"/></svg><span data-i18n="assistant">Trợ lý</span></button>
+        <button type="button" class="nav-button" data-page="settings"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16M9 3v6m6 0v6m-8 0v6"/></svg><span data-i18n="settings">Cài đặt</span></button>
+      </nav>
+      <p class="rail-note" data-i18n="masterNote">Xử lý trên máy chủ.<br>Không tải model về máy.</p>
+    </aside>
+    <main id="main" tabindex="-1">
+      <section class="hero" aria-labelledby="page-title">
+        <div><p class="eyebrow" id="page-index">01 / PREDICT</p><h1 id="page-title">KÊNH LÀM MÁT.<br><span>TIẾN HÓA DẠNG SINH HỌC.</span></h1><p id="page-subtitle" class="muted">Chọn case đã công bố. AI xử lý trên máy chủ.</p></div>
+        <button class="pet-card" id="pet" type="button" aria-label="Mở trợ lý">
+          <span class="thought" id="thought">Hỏi gì đó</span>
+          <span class="pet-orb" aria-hidden="true"><span class="pet-eyes"><i></i><i></i></span></span>
+          <span class="pet-caption" data-i18n="askPet">Nhấn để hỏi</span>
+        </button>
+      </section>
+      <section id="page-predict" class="page">
+        <article class="garage panel" aria-labelledby="garage-title">
+          <div class="section-heading"><div><p class="eyebrow">// GEOMETRY GARAGE</p><h2 id="garage-title">Chọn chi tiết</h2></div><span class="tag" id="geometry-counter">0 / 0</span></div>
+          <div class="garage-stage"><canvas id="geometry-canvas" width="1000" height="500" aria-label="Xoay hình học 3D" tabindex="0"></canvas><p id="geometry-loading" class="garage-message" role="status"></p><div class="garage-grid" aria-hidden="true"></div></div>
+          <div class="garage-controls"><button id="geometry-prev" type="button" aria-label="Chi tiết trước">←</button><div><h3 id="geometry-name">—</h3><p class="muted" id="geometry-size">—</p></div><button id="geometry-next" type="button" aria-label="Chi tiết tiếp theo">→</button></div>
+          <div id="geometry-cards" class="geometry-cards" aria-label="Vuốt để chọn chi tiết"></div>
+          <p id="garage-hint" class="subtle">Kéo để xoay · vuốt thẻ để đổi chi tiết. Hình xem trước, không phải mesh FEA.</p>
+        </article>
+        <ol class="steps" aria-label="Prediction steps"><li class="active"><span>1</span><b data-i18n="enterDQ">Nhập D / Q</b></li><li><span>2</span><b data-i18n="createChannel">Tạo kênh</b></li><li><span>3</span><b data-i18n="predictEvolve">Dự đoán → tiến hóa</b></li></ol>
+        <article class="panel design-panel">
+          <div class="section-heading"><h2 data-i18n="newDesign">Thiết kế mới</h2><span class="tag" id="design-generation">GEN 1</span></div>
+          <form id="design-form">
+            <div class="dq-fields">
+              <label class="field"><span data-i18n="diameterLabel">D · đường kính gốc (mm)</span><input id="design-d" type="number" inputmode="decimal" step="0.1" required><small id="d-bounds"></small></label>
+              <label class="field"><span data-i18n="flowLabel">Q · mỗi inlet (cc/s)</span><input id="design-q" type="number" inputmode="decimal" step="1" required><small id="q-bounds"></small></label>
+            </div>
+            <p class="subtle" data-i18n="rangeCaveat">Phạm vi nghiên cứu, chưa chứng nhận sai số. Gen 2–3 kế thừa D/Q; đường kính nhánh theo luật tạo kênh.</p>
+            <details class="process-details"><summary data-i18n="fixedProcess">Process cố định</summary><dl id="design-process" class="value-grid"></dl></details>
+            <div id="design-timeline" class="design-timeline"></div>
+            <p class="form-status" id="design-status" role="status"></p>
+            <div class="button-row design-actions"><button class="primary" id="create-design" type="submit" data-i18n="createGen1">Tạo Gen 1</button><button class="primary" id="predict-design" type="button" disabled data-i18n="predictCurrent">Dự đoán Gen 1</button><button class="primary" id="next-design" type="button" disabled data-i18n="createNext">Tạo Gen 2</button><button class="secondary" id="reset-design" type="button" data-i18n="newChain">Thiết kế khác</button></div>
+            <button class="secondary full" id="cancel-design" type="button" hidden data-i18n="cancel">Dừng yêu cầu</button>
+          </form>
+          <div id="design-summary" class="design-summary" hidden></div>
+        </article>
+        <details class="archive-cases"><summary data-i18n="archivedCases">Dự đoán lại case đã lưu</summary>
+        <div class="workspace-grid">
+          <article class="panel">
+            <div class="section-heading"><h2 data-i18n="publishedCases">Case được công bố</h2><span class="count" id="case-count">0</span></div>
+            <label class="field"><span data-i18n="filter">Tìm hình học / case</span><input id="case-search" type="search" autocomplete="off" maxlength="120" placeholder="Tên hình học hoặc case" data-placeholder="searchPlaceholder"></label>
+            <div id="case-list" class="case-list" aria-label="Cases"></div>
+            <div id="empty-cases" class="empty"><span class="empty-symbol" aria-hidden="true">⊞</span><h3 data-i18n="noCases">Chưa có case công bố</h3><p data-i18n="noCasesNote">Chủ máy sẽ công bố model và đầu vào đã kiểm tra. Không dùng dữ liệu nghiên cứu riêng.</p></div>
+            <button class="secondary full" id="refresh" type="button" data-i18n="refresh">Làm mới danh sách</button>
+          </article>
+          <article class="panel input-panel">
+            <div class="section-heading"><h2 data-i18n="inputs">Đầu vào</h2><span class="tag" data-i18n="frozen">Đúng theo case</span></div>
+            <div id="input-empty" class="empty compact"><p data-i18n="selectFirst">Chọn case để xem hình học, mạng kênh, D, Q và process.</p></div>
+            <div id="case-details" hidden><h3 id="selected-label"></h3><dl id="input-values" class="value-grid"></dl><details class="process-details"><summary data-i18n="process">Process & vật liệu</summary><dl id="process-values" class="value-grid"></dl></details><p class="subtle" data-i18n="frozenNote">Không đổi D/Q trên graph cũ. Case mới cần đủ mesh, mạng kênh và process.</p></div>
+            <p class="form-status" id="prediction-status" role="status"></p>
+            <button class="primary full" id="run-prediction" type="button" disabled data-i18n="run">Dự đoán</button>
+            <button class="secondary full" id="cancel-prediction" type="button" hidden data-i18n="cancel">Dừng yêu cầu</button>
+          </article>
+        </div>
+        </details>
+      </section>
+      <section id="page-results" class="page" hidden>
+        <article class="panel" id="result-empty"><div class="empty"><span class="empty-symbol" aria-hidden="true">↗</span><h2 data-i18n="noResult">Chưa có kết quả</h2><p data-i18n="noResultNote">Chọn case và chạy dự đoán. Không hiển thị số liệu mẫu như kết quả thật.</p><button type="button" class="primary" data-go="predict" data-i18n="chooseCase">Chọn case</button></div></article>
+        <div id="result-content" hidden>
+          <div class="metrics" id="metrics"></div>
+          <article class="panel chart-panel"><div class="section-heading"><div><h2 id="result-label"></h2><p class="muted" data-i18n="projection">Bề mặt · hình chiếu XY · điểm hiển thị lấy mẫu</p></div><div class="chart-actions"><button id="zoom-out" type="button" aria-label="Thu nhỏ" data-aria="zoomOut">−</button><button id="zoom-in" type="button" aria-label="Phóng to" data-aria="zoomIn">+</button><button id="zoom-reset" type="button" data-i18n="resetView">Khớp hình</button></div></div>
+            <div class="chart-wrap"><canvas id="result-chart" width="900" height="520" role="img" aria-label="AI temperature projection"></canvas></div>
+            <div class="legend"><span id="legend-min">—</span><div aria-hidden="true"></div><span id="legend-max">—</span></div>
+            <p class="subtle" data-i18n="predictionCaveat">Dự đoán AI không thay thế kiểm chứng FEA. Kết quả này chưa chứng nhận độ đúng trên hình học mới.</p>
+            <div class="button-row"><button class="primary" id="continue-design" type="button" data-go="predict" data-i18n="continueDesign" hidden>Tiếp tục tiến hóa</button><button class="primary" id="export-result" type="button" data-i18n="exportResult">Xuất JSON</button><button class="secondary" id="export-chart" type="button" data-i18n="exportChart">Xuất hình PNG</button></div>
+          </article>
+        </div>
+      </section>
+      <section id="page-assistant" class="page" hidden>
+        <div class="chat-grid">
+          <article class="panel chat-panel"><div class="section-heading"><h2 data-i18n="askAnything">Hỏi trợ lý</h2><span class="tag">LOCAL LLM</span></div>
+            <p class="subtle" data-i18n="assistantCaveat">LLM có thể trả lời sai. Không tự chạy mô phỏng, train hay đổi ACTIVE.</p>
+            <div id="chat-messages" class="chat-messages" aria-live="off"><p class="empty-chat" data-i18n="chatWelcome">Bạn muốn hiểu phần nào? Chọn câu hỏi bên dưới hoặc nhập câu của bạn.</p></div>
+            <p id="chat-status" class="form-status" role="status"></p>
+            <form id="chat-form"><label class="field"><span data-i18n="yourQuestion">Câu hỏi của bạn</span><textarea id="question" rows="3" maxlength="3000" placeholder="Nhập câu hỏi…" data-placeholder="questionPlaceholder"></textarea></label><div class="button-row"><button class="primary" id="send-question" type="submit" data-i18n="send">Gửi</button><button class="secondary" id="cancel-chat" type="button" hidden data-i18n="cancel">Dừng yêu cầu</button><button class="secondary" id="export-chat" type="button" disabled data-i18n="exportLog">Xuất log</button></div></form>
+          </article>
+          <aside class="panel questions-panel"><h2 data-i18n="commonQuestions">Hay gặp</h2><div class="suggestions" id="suggestions"></div></aside>
+        </div>
+      </section>
+      <section id="page-settings" class="page" hidden>
+        <div class="workspace-grid">
+          <article class="panel"><h2 data-i18n="display">Hiển thị</h2><label class="field"><span data-i18n="languageLabel">Ngôn ngữ</span><select id="language-select"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></label><label class="toggle-row"><span data-i18n="reducedMotion">Giảm chuyển động</span><input id="reduced-motion" type="checkbox"></label><p class="subtle" data-i18n="zoomNote">Có thể phóng to chữ bằng trình duyệt. Không khóa zoom trên điện thoại.</p><p class="version">USER / <span id="version">0.1.0</span></p></article>
+          <article class="panel"><h2 data-i18n="installTitle">Cài trên máy / điện thoại</h2><p data-i18n="installNote">Cài lên màn hình chính. Model và dữ liệu vẫn ở máy chủ.</p><button class="primary full" id="install" type="button" data-i18n="install">Cài ứng dụng</button><p id="install-help" class="subtle"></p><hr><h3 data-i18n="privacy">Quyền & dữ liệu</h3><p class="subtle" data-i18n="privacyNote">Bản công khai chỉ xem case được công bố, dự đoán và hỏi đáp. Không có DOE, train hoặc dữ liệu riêng. Chat không lưu lâu dài trên trình duyệt.</p><p class="subtle" data-i18n="offlineNote">Máy chủ tắt hoặc mất mạng: không dự đoán hay hỏi LLM. Giao diện đã cài vẫn mở được.</p></article>
+        </div>
+      </section>
+      <footer><span>Bản quyền thuộc về Tienle - FDUT team</span><span data-i18n="footer">USER · AI & TRỢ LÝ</span></footer>
+    </main>
+  </div>
+  <noscript>Ứng dụng cần JavaScript / This app needs JavaScript.</noscript>
+</body>
+</html>
