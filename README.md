@@ -4,7 +4,7 @@ A browser interface for exploring cooling channels for plastic injection molds.
 The research focuses on complex part geometry, variable wall thickness and
 temperature uniformity across successive channel designs.
 
-[Open the web app →](https://cooling-ai-user.lengtrtien2610.workers.dev/)
+[Web](https://cooling-ai-user.lengtrtien2610.workers.dev/)
 
 [![Web interface](https://raw.githubusercontent.com/soun26/soun26/main/assets/cooling-web-rounded.svg)](https://cooling-ai-user.lengtrtien2610.workers.dev/user/)
 
@@ -22,5 +22,4 @@ To serve the interface and gateway locally, use Wrangler with
 deployment secret; it is not included in this repository. Running this web source
 alone does not start the research computation service.
 
-[Research overview](https://github.com/soun26/soun26/blob/main/projects/bio-inspired-cooling.md)
- · [Contact Soun](https://github.com/soun26)
+[Overview](https://github.com/soun26/soun26/blob/main/projects/bio-inspired-cooling.md) · [Contact](https://github.com/soun26)
