@@ -6,7 +6,7 @@ temperature uniformity across successive channel designs.
 
 [Open the web app →](https://cooling-ai-user.lengtrtien2610.workers.dev/)
 
-[![Web interface](https://raw.githubusercontent.com/soun26/soun26/main/assets/cooling-web-preview.png)](https://cooling-ai-user.lengtrtien2610.workers.dev/user/)
+[![Web interface](https://raw.githubusercontent.com/soun26/soun26/main/assets/cooling-web-rounded.svg)](https://cooling-ai-user.lengtrtien2610.workers.dev/user/)
 
 This repository contains the web interface and its deployment gateway. The original
 research application, computation service and model files are maintained separately.
